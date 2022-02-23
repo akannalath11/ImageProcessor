@@ -1,0 +1,71 @@
+////////////////// GUI interactions //////////////////////////////////
+
+** Please view res/SCREENSHOT.jpg to view an example of our running program **
+
+- Run the ImageProcessorGUIMain class OR
+- Run the .jar file with no inputs
+
+- The GUI opens with no image loaded, but will show all the available commands
+- Click the "import" button and navigate to a valid image (.png, .ppm, .jpg, .jpeg, .bmp)
+- Example image res/dog.jpg is given ***
+- The image will appear in the center of the GUI
+- You can now click on any of the available transformation buttons on the right panel
+- To Brighten
+  * select a range on the slider, click the apply brighten to see the result
+- To greyscale/ color transform
+  * select the desired type from the drop down, click the apply button to see the result
+- The picture being displayed will update for each transformation
+- If you would like to go back, press the undo button (this will go all the way back until
+  base image)
+- When you want to save, press the "export" button and navigate to a valid file location/name
+
+GUI conditions:
+- Must have a file imported first, before applying any transformations
+- Undo will only go back to the base loaded image, if you want to switch images
+  simply import a new one. (Save the current image state first if you want to keep it)
+- The histogram will automatically update for each color transformation
+
+
+//////////////////// Text based scripting /////////////////////////////
+The available commands are:
+    save 'imageName' 'outputFile.ppm'  |  load 'inputFile.ppm' 'imageName'
+    vertical-flip 'imageName' 'newName' |  horizontal-flip 'imageName' 'newName'
+    value-component 'imageName' 'newName'  |  luma-component 'imageName' 'newName'
+    intensity-component 'imageName' 'newName' |  red-component 'imageName' 'newName'
+    green-component 'imageName' 'newName'   |  blue-component 'imageName' 'newName'
+    brighten 'integerValue' 'imageName' 'newName'
+    darken 'integerValue 'imageName' 'newName'
+    blur 'imageName' 'newName' | sharpen 'imageName' 'newName'
+    sepia 'imageName' 'newName'
+    q or quit to exit program
+
+Conditions:
+- An image must be loaded first before any of the other commands are valid
+- All inputs must be in the order shown above as Strings
+- An integer value must go directly after darken and brighten followed by the same two Strings
+- Must quit application when finished
+- The saved file type is determined by the letters following the last period in the output file name
+
+HOW TO RUN:
+Please run our JAR file by running: java -jar ImageProcessor.jar -file RUNME.txt
+   - If you want to input commands don't add -file
+   - the RUNME.txt is located in the /res and demonstrates an example of all our functions
+
+Running from terminal:
+- The program defaults to run with System.in
+- If the command line has -file, it will input the next string and read its contents, run the
+  program and quit
+
+Examples:
+COMMAND SCRIPT: Run ImageProcessorMain class - these can be typed in single line, or one by one
+load res/square.ppm square
+horizontal-flip square square2
+brighten 50 square2 square3
+vertical-flip square3 square4
+sepia square square-sepia
+blur square-sepia square-blur
+save square3 horizontal-50.ppm
+save square4 horizontal-50-vertical.ppm
+save square-blur squareBlur.png
+save square-blur squareBlur.bmp
+q
